@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+# california
+  california-1:
+    image: ubuntu:latest
+    container_name: california1
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.2
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/california.sh && /script/california.sh && sleep infinity"
+
+  california-2:
+    image: ubuntu:latest
+    container_name: california2
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.3
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/california.sh && /script/california.sh && sleep infinity"
+
+  california-3:
+    image: ubuntu:latest
+    container_name: california3
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.4
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/california.sh && /script/california.sh && sleep infinity"
+# tokyo
+  tokyo-1:
+    image: ubuntu:latest
+    container_name: tokyo1
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.66
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/tokyo.sh && /script/tokyo.sh && sleep infinity"
+
+  tokyo-2:
+    image: ubuntu:latest
+    container_name: tokyo2
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.67
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/tokyo.sh && /script/tokyo.sh && sleep infinity"
+
+  tokyo-3:
+    image: ubuntu:latest
+    container_name: tokyo3
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.68
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/tokyo.sh && /script/tokyo.sh && sleep infinity"
+# singapore
+  singapore-1:
+    image: ubuntu:latest
+    container_name: singapore1
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.130
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/singapore.sh && /script/singapore.sh && sleep infinity"
+
+  singapore-2:
+    image: ubuntu:latest
+    container_name: singapore2
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.131
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/singapore.sh && /script/singapore.sh && sleep infinity"
+
+  singapore-3:
+    image: ubuntu:latest
+    container_name: singapore3
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./script:/script
+    networks:
+      aws:
+        ipv4_address: 172.18.0.132
+    command: bash -c "apt-get update && apt-get install -y iproute2 iputils-ping && chmod +x /script/singapore.sh && /script/singapore.sh && sleep infinity"
+
+networks:
+  aws:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/24
